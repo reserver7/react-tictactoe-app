@@ -3,27 +3,19 @@ import Square from "./Square";
 import "./Board.css";
 
 const Board = ({ squares, onClick }) => {
+  const array = [0, 1, 2];
+
   const renderSquare = (i) => {
     return <Square value={squares[i]} onClick={() => onClick(i)} />;
   };
 
   return (
-    <div>
-      <div className="board-row">
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
-      </div>
-      <div className="board-row">
-        {renderSquare(3)}
-        {renderSquare(4)}
-        {renderSquare(5)}
-      </div>
-      <div className="board-row">
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
-      </div>
+    <div className="board-wrapper">
+      {array.map((row) => (
+        <div key={row} className="board-row">
+          {array.map((col) => renderSquare(row * 3 + col))}
+        </div>
+      ))}
     </div>
   );
 };
